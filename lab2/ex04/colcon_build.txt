@@ -1,0 +1,26 @@
+latupus2
+going to create a new package
+package name: latupus2
+destination directory: /home/latup/ros2_ws/src
+package format: 3
+version: 0.0.0
+description: TODO: Package description
+maintainer: ['latup <latup@todo.todo>']
+licenses: ['Apache-2.0']
+build type: ament_python
+dependencies: []
+node_name: my_node
+creating folder ./latupus2
+creating ./latupus2/package.xml
+creating source folder
+creating folder ./latupus2/latupus2
+creating ./latupus2/setup.py
+creating ./latupus2/setup.cfg
+creating folder ./latupus2/resource
+creating ./latupus2/resource/latupus2
+creating ./latupus2/latupus2/__init__.py
+creating folder ./latupus2/test
+creating ./latupus2/test/test_copyright.py
+creating ./latupus2/test/test_flake8.py
+creating ./latupus2/test/test_pep257.py
+creating ./latupus2/latupus2/my_node.py
