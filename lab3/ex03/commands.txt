@@ -1,0 +1,2 @@
+ros2 doctor --report > full_doctor.txt
+grep -A 10 "PLATFORM INFORMATION\|RWM MIDDLEWARE\|ROS 2 INFORMATION\|TOPIC LIST" full_doctor.txt > doctor.txt

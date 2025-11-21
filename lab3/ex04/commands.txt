@@ -1,0 +1,2 @@
+ros2 run turtlesim turtlesim_node
+ros2 run move_to_goal move_to_goal_node --ros-args -p x:=10.0 -p y:=10.0 -p theta:=1.57

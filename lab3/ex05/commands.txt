@@ -1,0 +1,4 @@
+ros2 run turtlesim turtlesim_node
+ros2 run action_cleaning_robot cleaning_action_server
+ros2 run action_cleaning_robot cleaning_action_client
+ros2 action send_goal /CleaningTask cleaning_robot_interfaces/action/CleaningTask "{task_type: 'clean_circle', area_size: 0.5}" --feedback

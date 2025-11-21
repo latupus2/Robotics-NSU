@@ -1,0 +1,7 @@
+ros2 run turtlesim turtlesim_node
+ros2 run turtlesim turtle_teleop_key
+ros2 bag record -o turtle_cmd_vel --storage mcap /turtle1/cmd_vel
+ros2 topic echo /turtle1/pose > pose_speed_x1.txt
+ros2 bag play turtle_cmd_vel/
+ros2 topic echo /turtle1/pose > pose_speed_x2.txt
+ros2 bag play turtle_cmd_vel/turtle_cmd_vel_0.mcap --rate 2

@@ -1,0 +1,29 @@
+   PLATFORM INFORMATION
+system           : Linux
+platform info    : Linux-5.15.167.4-microsoft-standard-WSL2-x86_64-with-glibc2.39
+release          : 5.15.167.4-microsoft-standard-WSL2
+processor        : x86_64
+
+   QOS COMPATIBILITY LIST
+topic [type]            : /parameter_events [rcl_interfaces/msg/ParameterEvent]
+publisher node          : _ros2cli_daemon_0_799bb70a0b0449f3a558894869c3cdd2
+subscriber node         : turtlesim
+compatibility status    : OK
+--
+   ROS 2 INFORMATION
+distribution name      : jazzy
+distribution type      : ros2
+distribution status    : active
+release platforms      : {'debian': ['bookworm'], 'rhel': ['9'], 'ubuntu': ['noble']}
+
+   TOPIC LIST
+topic               : /turtle1/cmd_vel
+publisher count     : 1
+subscriber count    : 1
+topic               : /turtle1/color_sensor
+publisher count     : 1
+subscriber count    : 0
+topic               : /turtle1/pose
+publisher count     : 1
+subscriber count    : 0
+topic               : /turtle1/rotate_absolute/_action/feedback
