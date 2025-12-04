@@ -1,0 +1,6 @@
+ros2 launch carrot_follower multi_target.launch.py
+ros2 run carrot_follower turtle_controller
+ros2 run turtlesim turtle_teleop_key
+
+------
+ros2 run carrot_follower target_switcher --ros-args -p switch_threshold:=1.5
