@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<package format="3">
+  <name>my_robot_gazebo</name>
+  <version>0.0.0</version>
+  <description>Gazebo simulation for my diff-drive robot</description>
+  <maintainer email="ivan@todo.todo">ivan</maintainer>
+  <license>Apache-2.0</license>
+
+  <buildtool_depend>ament_cmake</buildtool_depend>
+
+  <!-- CMake-зависимости -->
+  <build_depend>robot_state_publisher</build_depend>
+  <build_depend>xacro</build_depend>
+  <build_depend>ros_gz_sim</build_depend>
+  <build_depend>ros_gz_bridge</build_depend>
+
+  <!-- Runtime-зависимости (exec_depend) -->
+  <exec_depend>robot_state_publisher</exec_depend>
+  <exec_depend>xacro</exec_depend>
+  <exec_depend>ros_gz_sim</exec_depend>
+  <exec_depend>ros_gz_bridge</exec_depend>
+
+  <exec_depend>rclpy</exec_depend>
+  <exec_depend>sensor_msgs</exec_depend>
+  <exec_depend>nav_msgs</exec_depend>
+  <exec_depend>geometry_msgs</exec_depend>
+
+  <!-- Эти пакеты НЕ CMake → только exec_depend -->
+  <exec_depend>joint_state_publisher_gui</exec_depend>
+  <exec_depend>rviz2</exec_depend>
+  <exec_depend>teleop_twist_keyboard</exec_depend>
+  <exec_depend>rqt_robot_steering</exec_depend>
+
+  <!-- Зависимость от описания робота -->
+  <exec_depend>my_robot_description</exec_depend>
+
+  <test_depend>ament_lint_auto</test_depend>
+  <test_depend>ament_lint_common</test_depend>
+
+  <export>
+    <build_type>ament_cmake</build_type>
+  </export>
+</package>

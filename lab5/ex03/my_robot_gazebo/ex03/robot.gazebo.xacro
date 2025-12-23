@@ -1,0 +1,62 @@
+<?xml version="1.0" ?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <!-- DiffDrive плагин -->
+    <gazebo>
+      <plugin filename="gz-sim-diff-drive-system" name="gz::sim::systems::DiffDrive">
+        <left_joint>left_wheel_joint</left_joint>
+        <right_joint>right_wheel_joint</right_joint>
+        <wheel_separation>1.1</wheel_separation>
+        <wheel_radius>0.15</wheel_radius>
+        <topic>cmd_vel</topic>
+        <odom_topic>odom</odom_topic>
+        <odom_publish_frequency>30</odom_publish_frequency>
+        <publish_odom_tf>true</publish_odom_tf>  <!-- Добавьте: Публикация TF odom → base_link -->
+      </plugin>
+      <plugin filename="gz-sim-joint-state-publisher-system" name="gz::sim::systems::JointStatePublisher">
+        <topic>joint_states</topic>  <!-- Добавьте: Explicit топик /joint_states вместо default или model-prefixed -->
+      </plugin>
+    </gazebo>
+
+  <!-- Физика -->
+  <gazebo reference="base_link">
+    <mu1>1.0</mu1>
+    <mu2>1.0</mu2>
+  </gazebo>
+
+  <gazebo reference="left_wheel">
+    <mu1>100.0</mu1>  <!-- Высокое в боковом направлении -->
+    <mu2>0.0</mu2>    <!-- Нулевое в направлении качения -->
+    <fdir1>0 1 0</fdir1>  <!-- Направление для mu1: боковое (y) -->
+    <kp>100000.0</kp>  <!-- Снижено -->
+    <kd>10.0</kd>      <!-- Снижено -->
+    <minDepth>0.002</minDepth>
+  </gazebo>
+
+  <gazebo reference="right_wheel">
+    <mu1>100.0</mu1>
+    <mu2>0.0</mu2>
+    <fdir1>0 1 0</fdir1>
+    <kp>100000.0</kp>
+    <kd>10.0</kd>
+    <minDepth>0.002</minDepth>
+  </gazebo>
+
+  <!-- Для кастеров: низкое трение для скольжения -->
+  <gazebo reference="caster_front">
+    <mu1>0.1</mu1>
+    <mu2>0.1</mu2>
+    <kp>100000.0</kp>
+    <kd>10.0</kd>
+    <minDepth>0.001</minDepth>
+  </gazebo>
+
+  <gazebo reference="caster_back">
+    <mu1>0.1</mu1>
+    <mu2>0.1</mu2>
+    <kp>100000.0</kp>
+    <kd>10.0</kd>
+    <minDepth>0.001</minDepth>
+  </gazebo>
+
+</robot>

@@ -1,0 +1,3 @@
+colcon build --packages-select my_unique_robot_gazebo my_unique_robot_control
+source install/setup.bash
+ros2 launch my_unique_robot_control unique_movement.launch.py
