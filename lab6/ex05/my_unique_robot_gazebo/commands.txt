@@ -1,0 +1,9 @@
+colcon build --packages-select my_unique_robot_gazebo
+
+source install/setup.bash
+
+ros2 launch my_unique_robot_gazebo robot_depth_camera.launch.py
+
+ПЕРЕД ЗАПУСКОМ  ros2 topic list
+ros2 daemon start
+

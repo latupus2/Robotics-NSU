@@ -1,0 +1,2 @@
+ros2 launch my_unique_robot_gazebo ex04_obstacle_stop.launch.py
+ros2 launch my_unique_robot_gazebo robot_depth_camera.launch.py

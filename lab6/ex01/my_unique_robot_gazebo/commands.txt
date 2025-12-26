@@ -1,0 +1,18 @@
+# 1. Остановите все процессы
+pkill -f gz
+pkill -f gazebo
+pkill -f ros
+pkill -f rviz
+
+# 2. Удалите временные файлы
+rm -rf ~/.gazebo/log/*
+rm -rf ~/.ignition/gazebo/log/*
+
+# 3. Удалите старые билды и пересоберите
+cd ~/ros2_ws/task6/ex01
+rm -rf build/ install/ log/
+colcon build --packages-select my_unique_robot_gazebo
+source install/setup.bash
+
+# 4. Запустите
+ros2 launch my_unique_robot_gazebo robot_lidar.launch.py

@@ -1,0 +1,2 @@
+colcon build --packages-select my_unique_robot_gazebo
+ros2 launch my_unique_robot_gazebo robot_lidar.launch.py

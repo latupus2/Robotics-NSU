@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<sdf version="1.9">
+  <world name="test">
+    <model name="test_lidar">
+      <pose>0 0 1 0 0 0</pose>
+      <link name="link">
+        <visual name="visual">
+          <geometry><cylinder><radius>0.05</radius><length>0.1</length></cylinder></geometry>
+        </visual>
+        
+        <sensor name="lidar" type="gpu_ray">
+          <pose>0 0 0 0 0 0</pose>
+          <topic>/lidar/scan</topic>
+          <update_rate>10</update_rate>
+          <always_on>true</always_on>
+          <visualize>true</visualize>
+          
+          <ray>
+            <scan>
+              <horizontal>
+                <samples>360</samples>
+                <min_angle>-3.14159</min_angle>
+                <max_angle>3.14159</max_angle>
+              </horizontal>
+            </scan>
+            <range>
+              <min>0.1</min>
+              <max>10.0</max>
+            </range>
+          </ray>
+        </sensor>
+      </link>
+    </model>
+  </world>
+</sdf>

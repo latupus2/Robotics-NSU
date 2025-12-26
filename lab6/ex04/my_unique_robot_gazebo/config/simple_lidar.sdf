@@ -1,0 +1,98 @@
+<?xml version="1.0" ?>
+<sdf version="1.11">  <!-- Обновлено на 1.11 для Harmonic -->
+  <world name="simple_lidar">
+    <!-- Системы Gazebo Harmonic (gz-sim8) -->
+    <plugin
+      filename="gz-sim-scene-manager-system"
+      name="gz::sim::systems::SceneManager">
+      <render_engine>ogre2</render_engine>  <!-- Рекомендуется ogre2 в Harmonic -->
+      <background_color>0.2 0.2 0.2</background_color>
+      <ambient_light>0.8 0.8 0.8</ambient_light>
+      <shadows>false</shadows>  <!-- Отключить тени -->
+    </plugin>
+
+    <plugin
+      filename="gz-sim-sensors-system"
+      name="gz::sim::systems::Sensors">
+      <render_engine>ogre2</render_engine>
+    </plugin>
+
+    <plugin 
+      filename="gz-sim-imu-system" 
+      name="gz::sim::systems::Imu">
+    </plugin>
+
+    <plugin
+      filename="gz-sim-physics-system"
+      name="gz::sim::systems::Physics">
+    </plugin>
+
+    <plugin
+      filename="gz-sim-user-commands-system"
+      name="gz::sim::systems::UserCommands">
+    </plugin>
+
+    <plugin
+      filename="gz-sim-scene-broadcaster-system"
+      name="gz::sim::systems::SceneBroadcaster">
+    </plugin>
+
+    <!-- Освещение -->
+    <include>
+      <uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Sun</uri>
+    </include>
+
+    <!-- Пол -->
+    <model name="ground_plane">
+      <static>true</static>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+            </plane>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+            </plane>
+          </geometry>
+          <material>
+            <ambient>0.8 0.8 0.8 1</ambient>
+            <diffuse>0.8 0.8 0.8 1</diffuse>
+            <specular>0.8 0.8 0.8 1</specular>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- Препятствия для лидара -->
+    <model name="box1">
+      <pose>8 0 0.5 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>2 2 2</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>2 2 2</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0 0 1</ambient>  
+            <diffuse>1 0 0 1</diffuse>
+            <specular>0.1 0.1 0.1 1</specular>
+            <emissive>0 0 0 1</emissive>  
+          </material>
+        </visual>
+      </link>
+    </model>
+  </world>
+</sdf>

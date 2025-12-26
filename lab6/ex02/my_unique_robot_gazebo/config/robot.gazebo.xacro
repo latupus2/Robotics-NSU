@@ -1,0 +1,109 @@
+<?xml version="1.0" ?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <!-- DiffDrive плагин -->
+  <gazebo>
+    <plugin filename="gz-sim-diff-drive-system" name="gz::sim::systems::DiffDrive">
+      <left_joint>front_left_wheel_joint</left_joint>
+      <left_joint>rear_left_wheel_joint</left_joint>
+      <right_joint>front_right_wheel_joint</right_joint>
+      <right_joint>rear_right_wheel_joint</right_joint>
+
+      <wheel_separation>${wheel_offset_y * 2}</wheel_separation>
+      <wheel_radius>${wheel_radius}</wheel_radius>
+
+      <topic>cmd_vel</topic>
+      <odom_topic>odom</odom_topic>
+      <odom_publish_frequency>30</odom_publish_frequency>
+      <publish_odom_tf>true</publish_odom_tf>
+    </plugin>
+    <plugin filename="gz-sim-joint-state-publisher-system" name="gz::sim::systems::JointStatePublisher">
+      <topic>joint_states</topic>
+    </plugin>
+  </gazebo>
+
+  <!-- Физика для base_link -->
+  <gazebo reference="base_link">
+    <mu1>1.0</mu1>
+    <mu2>1.0</mu2>
+  </gazebo>
+
+  <!-- Физика для колёс -->
+  <gazebo reference="front_left_wheel">
+    <mu1>100.0</mu1>
+    <mu2>0.0</mu2>
+    <fdir1>0 1 0</fdir1>
+    <kp>100000.0</kp>
+    <kd>10.0</kd>
+    <minDepth>0.002</minDepth>
+  </gazebo>
+  <!-- ... (остальные колёса аналогично) -->
+
+  <!-- Лидар -->
+  <gazebo reference="lidar_link">
+     <sensor name="lidar_sensor" type="gpu_lidar">
+      <topic>/model/my_robot/lidar/scan</topic>
+      <pose>0 0 0 1.5708 0 0</pose>
+      <visualize>true</visualize>
+      <update_rate>5</update_rate>
+      <always_on>true</always_on>
+      <frame_name>lidar_link</frame_name>
+      <gz_frame_id>lidar_link</gz_frame_id>
+      <ray>
+        <scan>
+          <horizontal>
+            <samples>360</samples>
+            <resolution>1.0</resolution>
+            <min_angle>-3.14159</min_angle>
+            <max_angle>3.14159</max_angle>
+          </horizontal>
+        </scan>
+        <range>
+          <min>0.1</min>
+          <max>10.0</max>
+          <resolution>0.01</resolution>
+        </range>
+        <noise>
+          <type>gaussian</type>
+          <mean>0.0</mean>
+          <stddev>0.01</stddev>
+        </noise>
+      </ray>
+    </sensor>
+  </gazebo>
+
+  <!-- Удаляем старый сенсор в depth_camera_link и делаем новый в base_link -->
+  <gazebo reference="base_link">
+      <!-- Depth камера -->
+      <sensor name="depth_camera" type="depth_camera">
+          <topic>/model/my_robot/depth_camera/image</topic>
+          <camera_info_topic>/model/my_robot/depth_camera/camera_info</camera_info_topic>
+          <!-- Смещаем камеру ВПЕРЕД и ВЫШЕ, чтобы она была снаружи -->
+          <pose>0.6 0 0.4 0 0 0</pose>  <!-- X=0.6м вперед, Z=0.4м вверх -->
+          <update_rate>6</update_rate>
+          <always_on>1</always_on>  <!-- Меняем на 1 -->
+          <camera>
+              <horizontal_fov>1.51843645</horizontal_fov>
+              <image>
+                  <width>848</width>
+                  <height>480</height>
+                  <format>R_FLOAT32</format>  <!-- Оставляем как было, это правильный формат для глубины -->
+              </image>
+              <clip>
+                  <near>0.1</near>
+                  <far>10</far>
+              </clip>
+              <lens>
+                  <intrinsics>
+                      <fx>421.61578369140625</fx>
+                      <fy>421.61578369140625</fy>
+                      <cx>422.2854309082031</cx>
+                      <cy>236.57237243652344</cy>
+                      <s>0</s>
+                  </intrinsics>
+              </lens>
+          </camera>
+      </sensor>
+  </gazebo>
+
+</robot>
